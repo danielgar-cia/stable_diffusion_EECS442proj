@@ -100,6 +100,7 @@ class BERTEmbedder(AbstractEncoder):
         else:
             tokens = text
         z = self.transformer(tokens, return_embeddings=True)
+        print(f"Hidden state shape: {z.shape}")
         return z
 
     def encode(self, text):
@@ -208,6 +209,7 @@ class FrozenCLIPEmbedder(AbstractEncoder):
         outputs = self.transformer(input_ids=tokens)
 
         z = outputs.last_hidden_state
+        print(f"Last hidden state shape: {z.shape}")
         return z
 
     def encode(self, text):
